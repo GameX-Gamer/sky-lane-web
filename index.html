@@ -21,9 +21,13 @@
         <div id="render-target"></div>
     </div>
     <script type="module">
-        import { createScene } from './script.js';
+        import { createScene } from './src/script.js';
+        import { createCity } from './src/city.js';
         window.onload = () => {
             window.scene = createScene();
+            const city = createCity(8);
+            scene.initialize(city);
+            window.scene = scene;
             document.addEventListener('mousedown', window.scene.onMouseDown, false);
             document.addEventListener('mouseup', window.scene.onMouseUp, false);
             document.addEventListener('mousemove', window.scene.onMouseMove, false);

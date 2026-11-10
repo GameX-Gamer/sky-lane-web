@@ -13,17 +13,23 @@ export function createScene() {
     renderer.setSize(gameWindow.offsetWidth, gameWindow.offsetHeight);
     gameWindow.appendChild(renderer.domElement);
 
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial( { color:"blue"});
-    const mesh = new THREE.Mesh( geometry, material);
-    scene.add(mesh);
+    
 
     let meshes = [];
 
     function initialize(city) {
+        scene.clear();
+        meshes = [];
         for(let x = 0; x < city.size; x++) {
             const column = [];
             for (let y = 0; y < city.size; y++) {
+                const geometry = new THREE.BoxGeometry(1, 1, 1);
+                const material = new THREE.MeshBasicMaterial( { color:"blue"});
+                const mesh = new THREE.Mesh( geometry, material);
+                mesh.position.set(x, 0, y);
+                scene.add(mesh);
+                column.push(mesh);
+                // 3. add the mesh to the meshes array
 
             }
             meshes.push(column);
@@ -50,6 +56,7 @@ export function createScene() {
         camera.onMouseMove(event);
     }
     return {
+        initialize,
         start,
         stop,
         onMouseDown,
