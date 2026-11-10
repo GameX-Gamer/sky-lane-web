@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    gugugaga
-    <canvas id="draw"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.js" integrity="sha512-HCh7TuJvWZ35Ixo/afKeBRbAUtnqQWOrpw5Fs1bdWjWILg175hy9XRmuqG/vWyAqBKvUZStGMAsqKmYKqP91YQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="script.js"></script>
+    <div id="root-window">
+        <div id="render-target"></div>
+    </div>
+    <script type="module">
+        import { createScene } from './script.js';
+        window.onload = () => {
+            window.scene = createScene();
+            window.scene.start();
+        }
+    </script>
 </body>
 </html>
