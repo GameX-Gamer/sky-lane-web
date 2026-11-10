@@ -18,6 +18,18 @@ export function createScene() {
     const mesh = new THREE.Mesh( geometry, material);
     scene.add(mesh);
 
+    let meshes = [];
+
+    function initialize(city) {
+        for(let x = 0; x < city.size; x++) {
+            const column = [];
+            for (let y = 0; y < city.size; y++) {
+
+            }
+            meshes.push(column);
+        }
+    }
+
     function draw() {
         renderer.render(scene, camera.camera);
     }
