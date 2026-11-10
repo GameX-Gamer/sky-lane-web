@@ -7,9 +7,16 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.js" integrity="sha512-HCh7TuJvWZ35Ixo/afKeBRbAUtnqQWOrpw5Fs1bdWjWILg175hy9XRmuqG/vWyAqBKvUZStGMAsqKmYKqP91YQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <div id="root-window">
         <div id="render-target"></div>
     </div>
@@ -17,6 +24,9 @@
         import { createScene } from './script.js';
         window.onload = () => {
             window.scene = createScene();
+            document.addEventListener('mousedown', window.scene.onMouseDown, false);
+            document.addEventListener('mouseup', window.scene.onMouseUp, false);
+            document.addEventListener('mousemove', window.scene.onMouseMove, false);
             window.scene.start();
         }
     </script>
