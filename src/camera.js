@@ -15,7 +15,7 @@ export function createCamera(gameWindow) {
     const Y_AXIS = new THREE.Vector3(0, 1, 0);
 
     const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
-        let cameraOrigin = new THREE.Vector3(0, 0, 0);
+        let cameraOrigin = new THREE.Vector3(3, 0, 3);
         let cameraRadius = (Min_camera_radius + Max_camera_radius) / 2 ;
         let cameraAzimuth = 135;
         let cameraElevation = 45;
@@ -29,6 +29,9 @@ export function createCamera(gameWindow) {
 
     function onMouseDown(event) {
         console.log('mousedown');
+
+        preMouseX = event.clientX;
+        preMouseY = event.clientY;
 
         if (event.button === LEFT_MOUSE_BUTTON) {
             isLeftMouseDown = true;
@@ -64,7 +67,7 @@ export function createCamera(gameWindow) {
         if (isLeftMouseDown) {
             cameraAzimuth += - (zoomX * ROTATION_SENSITIVITY);
             cameraElevation += (zoomY * ROTATION_SENSITIVITY);
-            cameraElevation = Math.min(180, Math.max(0, cameraElevation));
+            cameraElevation = Math.min(89, Math.max(1, cameraElevation));
             updateCameraPosition();
         }
 
