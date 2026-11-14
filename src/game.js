@@ -3,7 +3,7 @@ import { createCity } from './city.js';
 
 export function createGame() {
     const scene = createScene();
-    const city = createCity(8);
+    const city = createCity(16);
 
     scene.initialize(city);
 
@@ -14,7 +14,7 @@ export function createGame() {
     const game ={
         update() {
             city.update();
-            //scene.update(city);
+            scene.update(city);
         }
     }
     setInterval(() => {
