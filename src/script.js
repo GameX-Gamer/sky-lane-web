@@ -12,6 +12,9 @@ export function createScene() {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true,});
     renderer.setSize(gameWindow.offsetWidth, gameWindow.offsetHeight);
+    renderer.setClearColor(0x000000, 0);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     gameWindow.appendChild(renderer.domElement);
 
     
@@ -72,16 +75,20 @@ export function createScene() {
     }
 
     function setupLights(){
-        const lights = [
-            new THREE.AmbientLight("white", 0.2),
-            new THREE.DirectionalLight("white", 0.9),
-            new THREE.DirectionalLight("white", 0.3),
-            new THREE.DirectionalLight("white", 0.3),
-        ];
-        lights[1].position.set(0, 1, 0);
-        lights[2].position.set(1, 1, 0);
-        lights[3].position.set(0, 1, 1);
-        scene.add(...lights);
+        const sun = new THREE.DirectionalLight(0xffffff, 1)
+        sun.position.set(20, 20, 20);
+        sun.castShadow = true;
+        sun.shadow.camera.left = -10;
+        sun.shadow.camera.right = 10;
+        sun.shadow.camera.top = 10;
+        sun.shadow.camera.bottom = -10;
+        sun.shadow.mapSize.width = 1024;
+        sun.shadow.mapSize.height = 1024;
+        sun.shadow.camera.near = 0.5;
+        sun.shadow.camera.far = 50;
+        sun.shadow.camera.updateProjectionMatrix();
+        scene.add(sun);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.3));
     }
 
     function draw() {

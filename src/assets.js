@@ -54,7 +54,11 @@ const assets = {
 
 export function createAssetInstance(assetId, x, y, data) {
     if (assetId in assets) {
-        return assets[assetId](x, y, data);
+        const mesh = assets[assetId](x, y, data);
+
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+        return mesh;
     } 
     else {
         console.warn(`Assest Id ${assetId} is not found. `);
