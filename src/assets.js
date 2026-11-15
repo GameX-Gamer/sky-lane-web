@@ -10,27 +10,35 @@ const assets = {
         mesh.position.set(x, -0.5, y);
         return mesh;
     },
-    'building-1': (x, y) => {
-        const material = new THREE.MeshStandardMaterial( { color:"yellow"});
+    'residential': (x, y) => {
+        const material = new THREE.MeshStandardMaterial( { color:"lightgreen"});
         const mesh = new THREE.Mesh( geometry, material);
-        mesh.userData = {id: 'building-1', x ,y };
+        mesh.userData = {id: 'residential', x ,y };
         mesh.position.set(x, 0.5, y);
         return mesh;
     },
-    'building-2': (x, y) => {
-        const material = new THREE.MeshStandardMaterial( { color:"orange"});
+    'commercial': (x, y) => {
+        const material = new THREE.MeshStandardMaterial( { color:"blue"});
         const mesh = new THREE.Mesh( geometry, material);
-        mesh.userData = {id: 'building-2', x, y };
-        mesh.scale.set(1, 2, 1);
-        mesh.position.set(x, 1, y);
+        mesh.userData = {id: 'commercial', x, y };
+        mesh.scale.set(1, 1, 1);
+        mesh.position.set(x, 0.5, y);
         return mesh;
     },
-    'building-3': (x, y) => {
-        const material = new THREE.MeshStandardMaterial( { color:"red"});
+    'industrial': (x, y) => {
+        const material = new THREE.MeshStandardMaterial( { color:"yellow"});
         const mesh = new THREE.Mesh( geometry, material);
-        mesh.userData = {id: 'building-3', x, y };
-        mesh.scale.set(1, 3, 1);
-        mesh.position.set(x, 1.5, y);
+        mesh.userData = {id: 'industrial', x, y };
+        mesh.scale.set(1, 1, 1);
+        mesh.position.set(x, 0.5, y);
+        return mesh;
+    },
+    'road': (x, y) => {
+        const material = new THREE.MeshStandardMaterial({ color: "grey" });
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.userData = { id: 'road', x, y };
+        mesh.scale.set(1, 0.1, 1);
+        mesh.position.set(x, 0.05, y);
         return mesh;
     }
 }
